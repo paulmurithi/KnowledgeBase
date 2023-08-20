@@ -66,13 +66,13 @@ export default {
   },
   methods: {
     ...mapActions({
-      signIn: 'auth/login'
+      signIn: 'register'
     }),
     async register() {
       this.processing = true;
       try {
-        await apiClient.register('/sanctum/csrf-cookie');
-        await apiClient.register(this.user);
+        await apiClient.post('/sanctum/csrf-cookie');
+        await apiClient.post(this.user);
         this.validationErrors = {};
         this.signIn();
       } catch (error) {

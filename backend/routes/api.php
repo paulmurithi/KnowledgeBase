@@ -18,7 +18,8 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('register', 'Auth\RegisterController@register');
-
+Route::group(['prefix' => ''], function () {
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+});
 
 

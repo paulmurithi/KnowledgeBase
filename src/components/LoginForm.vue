@@ -41,8 +41,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import axios from 'axios'
-
+import apiClient from '@/api.js'
 export default {
     name: "login-components",
     data() {
@@ -57,13 +56,13 @@ export default {
     },
     methods: {
         ...mapActions({
-            signIn: 'auth/login'
+            signIn: '/login'
         }),
         async login() {
             this.processing = true
-            await axios.get('/sanctum/csrf-cookie')
             try {
-                await axios.post('/login', this.auth)
+               await apiClient.login('/sanctum/csrf-cookie')
+              await apiClient.login('/login', this.auth)
                 this.signIn()
             } catch (error) {
                 if (error.response && error.response.status === 422) {

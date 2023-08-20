@@ -3,9 +3,9 @@
     <div class="slider">
       
       <div class="slide" :style="{ backgroundImage: 'url(' + currentImage + ')' }">
-        <!-- <div class="my1logo">
+        <div class="my1logo">
     <img src="@/assets/my1logo.png" alt="Your Logo" />
-  </div> -->
+  </div>
         <div class="overlay" :style="{ opacity: currentOpacity }">
           <div class="text">{{ currentText }}</div>
         </div>
@@ -22,9 +22,9 @@
     data() {
       return {
         images: [
-          { src: require('@/assets/doctor1.jpg'), text: 'The customer service was perfect, a friendly and very helpful lady. Had my appointment booked' },
-          { src: require('@/assets/doctor2.jpg'), text: 'Doctor 2 Text' },
-          { src: require('@/assets/doctor3.jpg'), text: 'Doctor 3 Text' }
+          { src: require('@/assets/doctor1.jpg'), text: 'The customer service was perfect, a friendly and very helpful lady. Had my appointment booked and everything was well done.Not a single inconvinience.The doctors Services were also very professional and efficient.Loved the whole process.Thank you.' },
+          { src: require('@/assets/doctor2.jpg'), text: 'Professional and friendly environmrnt.Elizabeth was quite efficient with my booking.The session with Dr.Sarita was nothing short of fruitful.Highly recommend.' },
+          { src: require('@/assets/doctor3.jpg'), text: 'I took my son to see Dr.Gachare and I really loved it not to mention thr friendly service I received from Lucy from booking our appointment to having a session with the Doctor' }
         ],
         currentIndex: 1,
         currentImage: '',
