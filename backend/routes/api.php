@@ -18,8 +18,9 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix' => ''], function () {
-    Route::get('/register', [RegisterController::class, 'register'])->name('register');
-});
+//Route::group(['prefix' => 'api'], function () {
+    Route::post('/login', [RegisterController::class, 'register'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+//});
 
 
