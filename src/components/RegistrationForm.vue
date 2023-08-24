@@ -47,44 +47,30 @@
            </div>     
 </template>
 <script>
-import apiClient from '@/api.js';
-import { mapActions } from 'vuex';
+import {mapActions, mapState} from "pinia";
+import {useAuthStore} from "../../store/auth";
 
 export default {
   name: 'register-component',
   data() {
     return {
-      user: {
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: ""
-      },
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
       validationErrors: {},
       processing: false
     };
   },
+  computed: {
+    ...mapState(useAuthStore, ["loading"])
+  },
   methods: {
-    ...mapActions({
+    ...mapActions(useAuthStore, {
       signIn: 'register'
     }),
     async register() {
-      this.processing = true;
-      try {
-        await apiClient.post('/sanctum/csrf-cookie');
-        await apiClient.post(this.user);
-        this.validationErrors = {};
-        this.signIn();
-      } catch (error) {
-        if (error.response && error.response.status === 422) {
-          this.validationErrors = error.response.data.errors;
-        } else {
-          this.validationErrors = {};
-          alert(error.response ? error.response.data.message : "An error occurred.");
-        }
-      } finally {
-        this.processing = false;
-      }
+      this.signIn(this.name, this.email, this.password, this.password_confirmation);
     }
   }
 };
