@@ -67,7 +67,7 @@ export const useAuthStore = defineStore("auth", {
     async register(name, email, password, password_confirmation) {
       let _vm = this
       this.loading = true
-      axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.get('/sanctum/csrf-cookie').then(() => {
 
         const headers = {
           'Content-Type': 'application/json'
@@ -81,14 +81,14 @@ export const useAuthStore = defineStore("auth", {
             },
             headers
         )
-            .then(function (response) {
+            .then(function () {
 
               _vm.router.push({name: "login"});
 
               _vm.loading = false
 
             })
-            .catch(function (error) {
+            .catch(function () {
               _vm.router.push({name: "reset-password"})
 
               _vm.loading = false
@@ -96,9 +96,6 @@ export const useAuthStore = defineStore("auth", {
       });
     },
     async login(email, password, remember) {
-
-      let _vm = this
-
       this.loading = true
 
       const headers = {
@@ -119,7 +116,7 @@ export const useAuthStore = defineStore("auth", {
             }
 
           })
-          .catch((error) => {
+          .catch(() => {
             this.router.push({name: "login"});
             this.loading = false
           });
@@ -129,7 +126,7 @@ export const useAuthStore = defineStore("auth", {
     async forgotPassword(email) {
       let _vm = this
       this.loading = true
-      axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.get('/sanctum/csrf-cookie').then( () => {
 
         const headers = {
           'Content-Type': 'application/json'
@@ -138,10 +135,10 @@ export const useAuthStore = defineStore("auth", {
         axios.post('/api/forgot-password', {
           email
         }, headers)
-            .then(function (response) {
+            .then(function () {
               _vm.loading = false
             })
-            .catch(function (error) {
+            .catch(function () {
               _vm.loading = false
             });
       });
@@ -150,7 +147,7 @@ export const useAuthStore = defineStore("auth", {
     async resetPassword(token, email, password, password_confirmation) {
       let _vm = this
       this.loading = true
-      axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.get('/sanctum/csrf-cookie').then( ()=> {
 
         const headers = {
           'Content-Type': 'application/json'
@@ -164,14 +161,14 @@ export const useAuthStore = defineStore("auth", {
             },
             headers
         )
-            .then(function (response) {
+            .then(function () {
 
               _vm.router.push({name: "login"});
 
               _vm.loading = false
 
             })
-            .catch(function (error) {
+            .catch(function () {
               _vm.router.push({name: "reset-password"})
 
               _vm.loading = false
@@ -184,10 +181,10 @@ export const useAuthStore = defineStore("auth", {
       this.$reset()
 
       await axios.post('/api/logout')
-          .then(function (response) {
+          .then(function () {
             _vm.router.push({name: 'login'})
           })
-          .catch(function (error) {
+          .catch(function () {
             window.location.pathname = '/login'
           });
     },

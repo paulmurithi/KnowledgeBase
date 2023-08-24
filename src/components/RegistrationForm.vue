@@ -48,7 +48,7 @@
 </template>
 <script>
 import {mapActions, mapState} from "pinia";
-import {useAuthStore} from "../../store/auth";
+import {useAuthStore} from "@/store/auth";
 
 export default {
   name: 'register-component',

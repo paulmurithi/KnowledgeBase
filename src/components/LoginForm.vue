@@ -40,7 +40,7 @@
             </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'pinia'
 import apiClient from '@/api.js'
 export default {
     name: "login-components",

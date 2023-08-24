@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'pinia'
 import axios from 'axios'
 export default {
     name: "default-layout",
